@@ -24,6 +24,15 @@ namespace MoodAnalyser
             MdAnalyserMain md = new MdAnalyserMain();
             string result = md.analyseMood("happy message");
             Assert.AreEqual("happy", result);
+
         }
+        [Test]
+        public void when_Any_Message_Is_Given_Should_Return_Happy()
+        {
+            MdAnalyserMain md = new MdAnalyserMain();
+            string result = md.analyseMood("any message");
+            Assert.AreEqual("happy", result);
+        }
+
     }
 }
