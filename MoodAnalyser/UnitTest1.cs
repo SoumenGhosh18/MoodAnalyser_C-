@@ -33,6 +33,12 @@ namespace MoodAnalyser
             string result = md.analyseMood();
             Assert.AreEqual("happy", result);
         }
-
+        [Test]
+        public void when_Null_Message_Is_Given_Should_Return_Happy()
+        {
+            MdAnalyserMain md = new MdAnalyserMain(" ");
+            string result = md.analyseMood();
+            Assert.AreEqual("happy", result);
+        }
     }
 }
