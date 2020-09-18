@@ -13,7 +13,7 @@ namespace MoodAnalyser
         [Test]
         public void when_Sad_Message_Is_Given_Should_Return_Sad()
         {
-            MdAnalyserMain md = new MdAnalyserMain("sad message");
+            MdAnalyserMain md = new MdAnalyserMain(" This is sad message");
             string result = md.analyseMood();
             Assert.AreEqual("sad", result);
         }

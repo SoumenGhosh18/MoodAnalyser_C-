@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MoodAnalyser
 {
-    class MdAnalyserMain
+    class MdAnalyserMain 
     {
         public string message;
 
@@ -12,19 +12,23 @@ namespace MoodAnalyser
         {
             this.message = message;
         }
-       /* public  string analyseMood(string message)
-        {
-            if (message.Contains("sad"))
-                return "sad";
-            else
-                return "happy";
-        }*/
-         public String analyseMood()
-        {
-            if (message.Contains("sad"))
-                return "sad";
-            else
-                return "happy";
-        }   
+
+            public string analyseMood () 
+            {
+            try
+            {
+                if (message.Length == 0)
+                    throw new MoodAnalyserException("Exception");
+
+                if (message.Contains("sad"))
+                    return "sad";
+                else 
+                        return "happy";
+                }
+                 catch (MoodAnalyserException e)
+               {
+                throw new MoodAnalyserException("Exception");
+                }
+           }
     }
 }
