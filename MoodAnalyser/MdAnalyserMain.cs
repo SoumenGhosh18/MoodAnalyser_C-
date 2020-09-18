@@ -18,7 +18,7 @@ namespace MoodAnalyser
             try
             {
                 if (message.Length == 0)
-                    throw new MoodAnalyserException("Exception");
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "Please enter valid input");
 
                 if (message.Contains("sad"))
                     return "sad";
@@ -27,7 +27,7 @@ namespace MoodAnalyser
                 }
                  catch (MoodAnalyserException e)
                {
-                throw new MoodAnalyserException("Exception");
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input,"please entered valid input");
                 }
            }
     }

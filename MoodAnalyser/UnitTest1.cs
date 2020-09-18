@@ -13,9 +13,16 @@ namespace MoodAnalyser
         [Test]
         public void when_Sad_Message_Is_Given_Should_Return_Sad()
         {
-            MdAnalyserMain md = new MdAnalyserMain(" This is sad message");
-            string result = md.analyseMood();
-            Assert.AreEqual("sad", result);
+            try
+            {
+                MdAnalyserMain md = new MdAnalyserMain(" This is sad message");
+                string result = md.analyseMood();
+                Assert.AreEqual("sad", result);
+            }
+            catch (MoodAnalyserException e)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, "Please entered valid input");
+            }
         }
 
         [Test]
@@ -34,11 +41,26 @@ namespace MoodAnalyser
             Assert.AreEqual("happy", result);
         }
         [Test]
+
         public void when_Null_Message_Is_Given_Should_Return_Happy()
         {
-            MdAnalyserMain md = new MdAnalyserMain(" ");
+            MdAnalyserMain md = new MdAnalyserMain("null");
             string result = md.analyseMood();
             Assert.AreEqual("happy", result);
+        }
+        [Test]
+        public void when_Empty_Message_Is_Given_Should_Return_Happy()
+        {
+            try
+            {
+                MdAnalyserMain md = new MdAnalyserMain(" ");
+                string result = md.analyseMood();
+              
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.ENTERED_EMPTY,e.type);
+            }
         }
     }
 }
