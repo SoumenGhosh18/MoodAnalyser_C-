@@ -56,11 +56,11 @@ namespace MoodAnalyser
             {
                 MdAnalyserMain md = new MdAnalyserMain(" ");
                 string result = md.analyseMood();
-              
+
             }
             catch (MoodAnalyserException e)
             {
-                Assert.AreEqual(MoodAnalyserException.ExceptionType.ENTERED_EMPTY,e.type);
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, e.type);
             }
         }
         [Test]
@@ -71,7 +71,7 @@ namespace MoodAnalyser
             {
                 MdAnalyserMain md = new MdAnalyserMain("If Enter null");
                 string result = md.analyseMood();
-             
+
             }
             catch (MoodAnalyserException e)
             {

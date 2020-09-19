@@ -16,7 +16,6 @@ namespace MoodAnalyser
         {
 
         }
-
             public string analyseMood () 
             {
             try
