@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Reflection;
 
 namespace MoodAnalyser
 {
@@ -49,7 +50,7 @@ namespace MoodAnalyser
             Assert.AreEqual("happy", result);
         }
         [Test]
-        public void when_Empty_Message_Is_Given_Should_Return_Happy()
+        public void when_Empty_Message_Is_Given_Should_Return_MoodAnalyserException()
         {
             try
             {
@@ -60,6 +61,50 @@ namespace MoodAnalyser
             catch (MoodAnalyserException e)
             {
                 Assert.AreEqual(MoodAnalyserException.ExceptionType.ENTERED_EMPTY,e.type);
+            }
+        }
+        [Test]
+
+        public void when_Null_Message_Is_Given_Should_Return_MoodAnalyserException()
+        {
+            try
+            {
+                MdAnalyserMain md = new MdAnalyserMain("If Enter null");
+                string result = md.analyseMood();
+             
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.ENTERED_NULL, e.type);
+            }
+        }
+        [Test]
+        public void WhenGivenMoodAnalyserNameShouldReturnMoodAnalyserObject()
+        {
+            try
+            {
+                MdAnalyserMain obj = MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyserMain");
+                MdAnalyserMain m = new MdAnalyserMain();
+                Assert.IsTrue(obj.ToString().Equals(m.ToString()));
+            }
+            catch (MoodAnalyserException e)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "wrong file");
+            }
+        }
+        [Test]
+        public void WhenGivenMoodAnalyserWithWrongNameShouldThrowMoodAnalyserException()
+        {
+            try
+            {
+                MdAnalyserMain obj = MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyserMainabc");
+                MdAnalyserMain m = new MdAnalyserMain();
+
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_INPUT, e.type);
+
             }
         }
     }

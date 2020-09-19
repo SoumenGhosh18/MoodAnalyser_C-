@@ -8,15 +8,10 @@ namespace MoodAnalyser
     {
         public enum ExceptionType
         {
-            Not_A_Valid_Input,ENTERED_EMPTY,ENTERED_NULL
+            Not_A_Valid_Input,ENTERED_EMPTY,ENTERED_NULL, NO_CLASS_FOUND, INVALID_INPUT
 
         }
         string message;
-        // public MoodAnalyserException(string message)
-        //{
-        //  this.message = message;
-
-        //  }
         public ExceptionType type;
         public MoodAnalyserException(ExceptionType type, String message)
         {

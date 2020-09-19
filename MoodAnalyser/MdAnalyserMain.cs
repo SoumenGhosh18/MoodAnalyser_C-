@@ -12,6 +12,10 @@ namespace MoodAnalyser
         {
             this.message = message;
         }
+        public MdAnalyserMain()
+        {
+
+        }
 
             public string analyseMood () 
             {
@@ -27,7 +31,7 @@ namespace MoodAnalyser
                 }
                  catch (MoodAnalyserException e)
                {
-                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input,"please entered valid input");
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_NULL,"please entered valid input");
                 }
            }
     }
