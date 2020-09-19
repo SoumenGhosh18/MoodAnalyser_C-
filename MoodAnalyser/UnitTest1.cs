@@ -83,7 +83,7 @@ namespace MoodAnalyser
         {
             try
             {
-                MdAnalyserMain obj = MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyserMain");
+                MdAnalyserMain obj = MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyser.MdAnalyserMain");
                 MdAnalyserMain m = new MdAnalyserMain();
                 Assert.IsTrue(obj.ToString().Equals(m.ToString()));
             }
@@ -97,7 +97,7 @@ namespace MoodAnalyser
         {
             try
             {
-                MdAnalyserMain obj = MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyserMainabc");
+                MdAnalyserMain obj = MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyserMaina");
                 MdAnalyserMain m = new MdAnalyserMain();
 
             }
@@ -107,5 +107,6 @@ namespace MoodAnalyser
 
             }
         }
+     
     }
 }

@@ -13,8 +13,8 @@ namespace MoodAnalyser
             {
                 Assembly excutingAssambly = Assembly.GetExecutingAssembly();
                 Type type = excutingAssambly.GetType(className);
-                MdAnalyserMain MoodAnalyserMainObject = (MdAnalyserMain)Activator.CreateInstance(type);
-                return MoodAnalyserMainObject;
+                MdAnalyserMain MdAnalyserMainObject = (MdAnalyserMain)Activator.CreateInstance(type);
+                return MdAnalyserMainObject;
             }
             catch (Exception e)
             {
