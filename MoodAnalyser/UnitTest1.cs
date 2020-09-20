@@ -178,6 +178,30 @@ namespace MoodAnalyser
                 Assert.AreEqual(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.type);
             }
         }
-
+        [Test]
+        public void WhenGivenHappyMessage_UsingReflection_ShouldReturnHappy()
+        {
+            try
+            {
+                string message = MoodAnalyserFactory.getMethod("MoodAnalyser.MdAnalyserMain", "getMethod", "happy");
+                Assert.AreEqual("happy", message);
+            }
+            catch (MoodAnalyserException e)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, "invalid input");
+            }
+        }
+        [Test]
+        public void WhenGivenHappyMessageUsingReflection_WhenImproperMethod_ShouldReturnHappy()
+        {
+            try
+            {
+                string message = MoodAnalyserFactory.getMethod("MoodAnalyser.MdAnalyserMain", "WrongMethodName", "happy");
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.type);
+            }
+        }
     }
-}
+ }

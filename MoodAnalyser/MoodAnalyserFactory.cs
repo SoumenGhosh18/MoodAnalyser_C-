@@ -88,7 +88,26 @@ namespace MoodAnalyser
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.Message);
             }
         }
+        public static string getMethod(string className, string methodName, string message)
+        {
+            try
+            {
+                ConstructorInfo constructor = ConstructorCreator(1);
+                object obj = InstanceCreator(className, constructor, message);
+                Assembly excutingAssambly = Assembly.GetExecutingAssembly();
+                Type type = excutingAssambly.GetType(className);
+                MethodInfo getMoodMethod = type.GetMethod(methodName);
+                string[] parameters = new string[1];
+                parameters[0] = message;
+                string msg = (string)getMoodMethod.Invoke(obj, parameters);
+                return msg;
+            }
+            catch (Exception e)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, "invalid input");
+            }
 
+        }
     }
 }
 
