@@ -20,9 +20,6 @@ namespace MoodAnalyser
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.Message);
             }
         }
-
-     
-
         public static ConstructorInfo ConstructorCreator(int noOfParameters)
         {
             try
@@ -44,9 +41,7 @@ namespace MoodAnalyser
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.Message);
             }
         }
-
-
-
+       
         public static object InstanceCreator(string className, ConstructorInfo constructor)
         {
             try
@@ -62,7 +57,20 @@ namespace MoodAnalyser
             }
 
         }
-       
+        public static object InstanceCreator(string className, ConstructorInfo constructor, string message)
+        {
+            try
+            {
+                Assembly excutingAssambly = Assembly.GetExecutingAssembly();
+                Type type = excutingAssambly.GetType(className);
+                object reflectionGenratedObject = Activator.CreateInstance(type, message);
+                return reflectionGenratedObject;
+            }
+            catch (Exception e)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.Message);
+            }
+        }
 
     }
 }

@@ -112,5 +112,20 @@ namespace MoodAnalyser
 
             }
         }
+        [Test]
+        public void WhenGivenMoodAnalyser_WithParameterConstructor_ProperNameShouldReturnMoodAnalyserObject()
+        {
+            try
+            {
+                ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator(3);
+                MdAnalyserMain obj = (MdAnalyserMain)MoodAnalyserFactory.InstanceCreator
+                ("MoodAnalyser.MdAnalyserMain", constructorInfo, "he is is happy mood");
+                Assert.IsInstanceOf(typeof(MdAnalyserMain), obj);
+            }
+            catch (MoodAnalyserException e)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "please enter valid input");
+            }
+        }
     }
 }
