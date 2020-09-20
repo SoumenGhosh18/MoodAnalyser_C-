@@ -83,12 +83,15 @@ namespace MoodAnalyser
         {
             try
             {
-                MdAnalyserMain obj = MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyser.MdAnalyserMain");
-                MdAnalyserMain m = new MdAnalyserMain();
-                Assert.IsTrue(obj.ToString().Equals(m.ToString()));
+                ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator();
+                MdAnalyserMain obj = (MdAnalyserMain)MoodAnalyserFactory.InstanceCreator
+                ("MoodAnalyser.MdAnalyserMain", constructorInfo);
+                Assert.IsInstanceOf(typeof(MdAnalyserMain), obj);
+                Console.WriteLine("try");
             }
             catch (MoodAnalyserException e)
             {
+
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "wrong file");
             }
         }
@@ -97,16 +100,17 @@ namespace MoodAnalyser
         {
             try
             {
-                MdAnalyserMain obj = MoodAnalyserFactory.GetMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyserMaina");
+                ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator();
+                object obj = MoodAnalyserFactory.InstanceCreator("MdAnalyserMain12bhvyu", constructorInfo);
                 MdAnalyserMain m = new MdAnalyserMain();
-
+                Console.WriteLine("try");
             }
             catch (MoodAnalyserException e)
             {
-                Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_INPUT, e.type);
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.type);
+                Console.WriteLine("catch");
 
             }
         }
-     
     }
 }
