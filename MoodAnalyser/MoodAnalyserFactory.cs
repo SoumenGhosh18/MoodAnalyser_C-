@@ -88,7 +88,7 @@ namespace MoodAnalyser
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.Message);
             }
         }
-        public static string getMethodddd(string className, string methodName, string message)
+        public static string gettingMethodInfo(string className, string methodName, string message)
         {
             try
             {

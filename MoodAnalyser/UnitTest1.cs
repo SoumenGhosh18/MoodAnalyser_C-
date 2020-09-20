@@ -198,5 +198,17 @@ namespace MoodAnalyser
             dynamic result = MoodAnalyserFactory.ChangeTheMood("MoodAnalyser.MdAnalyserMain", "happy");
             Assert.AreEqual("happy", result);
         }
+        [Test]
+        public void ChangeMoodDynamically_WhenNull_ShouldThrowException()
+        {
+            try
+            {
+                dynamic result = MoodAnalyserFactory.ChangeTheMood("MoodAnalyser.MdAnalyserMain", null);
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.type);
+            }
+        }
     }
 }
