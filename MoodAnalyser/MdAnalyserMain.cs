@@ -16,7 +16,11 @@ namespace MoodAnalyser
         {
 
         }
-            public string analyseMood () 
+        public string analyseMood1()
+        {
+            return this.analyseMood(message);
+        }
+            public string analyseMood (String a) 
             {
             try
             {

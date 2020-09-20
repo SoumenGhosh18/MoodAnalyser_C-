@@ -88,25 +88,43 @@ namespace MoodAnalyser
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.Message);
             }
         }
-        public static string getMethod(string className, string methodName, string message)
+        public static string getMethodddd(string className, string methodName, string message)
         {
             try
             {
+                Assembly excutingAssambly = Assembly.GetExecutingAssembly();
                 ConstructorInfo constructor = ConstructorCreator(1);
                 object obj = InstanceCreator(className, constructor, message);
-                Assembly excutingAssambly = Assembly.GetExecutingAssembly();
+                
                 Type type = excutingAssambly.GetType(className);
                 MethodInfo getMoodMethod = type.GetMethod(methodName);
-                string[] parameters = new string[1];
+                string[] parameters = new string[1];//bcz one method is there 
                 parameters[0] = message;
-                string msg = (string)getMoodMethod.Invoke(obj, parameters);
-                return msg;
+                return (string)getMoodMethod.Invoke(obj, parameters);
+                
             }
             catch (Exception e)
             {
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, "invalid input");
             }
 
+        }
+        // int []a= {1};
+        public static dynamic ChangeTheMood(string className, string mood)
+        {
+            try
+            {
+                Type type = Type.GetType(className);
+                dynamic change_mood = Activator.CreateInstance(type, mood);
+                //calling method at run time
+                MethodInfo method = type.GetMethod("analyseMood");
+                dynamic value = method.Invoke(change_mood, new object[] { mood });
+                return value;
+            }
+            catch (Exception e)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.Message);
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ namespace MoodAnalyser
             try
             {
                 MdAnalyserMain md = new MdAnalyserMain(" This is sad message");
-                string result = md.analyseMood();
+                string result = md.analyseMood1();
                 Assert.AreEqual("sad", result);
             }
             catch (MoodAnalyserException e)
@@ -30,7 +30,7 @@ namespace MoodAnalyser
         public void when_Happy_Message_Is_Given_Should_Return_Happy()
         {
             MdAnalyserMain md = new MdAnalyserMain("happy message");
-            string result = md.analyseMood();
+            string result = md.analyseMood1();
             Assert.AreEqual("happy", result);
 
         }
@@ -38,7 +38,7 @@ namespace MoodAnalyser
         public void when_Any_Message_Is_Given_Should_Return_Happy()
         {
             MdAnalyserMain md = new MdAnalyserMain("any message");
-            string result = md.analyseMood();
+            string result = md.analyseMood1();
             Assert.AreEqual("happy", result);
         }
         [Test]
@@ -46,7 +46,7 @@ namespace MoodAnalyser
         public void when_Null_Message_Is_Given_Should_Return_Happy()
         {
             MdAnalyserMain md = new MdAnalyserMain("null");
-            string result = md.analyseMood();
+            string result = md.analyseMood1();
             Assert.AreEqual("happy", result);
         }
         [Test]
@@ -55,7 +55,7 @@ namespace MoodAnalyser
             try
             {
                 MdAnalyserMain md = new MdAnalyserMain(" ");
-                string result = md.analyseMood();
+                string result = md.analyseMood1();
 
             }
             catch (MoodAnalyserException e)
@@ -70,7 +70,7 @@ namespace MoodAnalyser
             try
             {
                 MdAnalyserMain md = new MdAnalyserMain("If Enter null");
-                string result = md.analyseMood();
+                string result = md.analyseMood1();
 
             }
             catch (MoodAnalyserException e)
@@ -87,9 +87,9 @@ namespace MoodAnalyser
                 ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator();
                 MdAnalyserMain obj = (MdAnalyserMain)MoodAnalyserFactory.InstanceCreator
                 ("MoodAnalyser.MdAnalyserMain", constructorInfo);
-              //  MdAnalyserMain m = new MdAnalyserMain();
-                 Assert.IsInstanceOf(typeof(MdAnalyserMain), obj);
-               // Assert.AreEqual(obj, m);
+                //  MdAnalyserMain m = new MdAnalyserMain();
+                Assert.IsInstanceOf(typeof(MdAnalyserMain), obj);
+                // Assert.AreEqual(obj, m);
                 Console.WriteLine("try");
             }
             catch (MoodAnalyserException e)
@@ -105,7 +105,7 @@ namespace MoodAnalyser
             {
                 ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator();
                 object obj = MoodAnalyserFactory.InstanceCreator("MdAnalyserMain12bhvyu", constructorInfo);
-               // MdAnalyserMain m = new MdAnalyserMain();
+                // MdAnalyserMain m = new MdAnalyserMain();
                 Console.WriteLine("try");
             }
             catch (MoodAnalyserException e)
@@ -167,7 +167,7 @@ namespace MoodAnalyser
         {
             try
             {
-              
+
                 ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator(22554);
                 MdAnalyserMain obj = (MdAnalyserMain)MoodAnalyserFactory.InstanceCreator
                 ("MoodAnalyser.MdAnalyserMain", constructorInfo, "i am in happy mood");
@@ -178,33 +178,25 @@ namespace MoodAnalyser
                 Assert.AreEqual(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.type);
             }
         }
-      
+
         [Test]
         public void WhenGivenHappyMessageUsingReflection_WhenImproperMethod_ShouldReturnHappy()
         {
             try
             {
-                string message = MoodAnalyserFactory.getMethod("MoodAnalyser.MdAnalyserMain", "WrongMethodName", "happy");
+                string message = MoodAnalyserFactory.gettingMethodInfo("MoodAnalyser.MdAnalyserMain", "WrongMethodName", "happy");
             }
             catch (MoodAnalyserException e)
             {
                 Assert.AreEqual(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.type);
             }
         }
-        public static dynamic ChangeTheMood(string className, string mood)
+
+        [Test]
+        public void Change_Mood_Dynamically()
         {
-            try
-            {
-                Type type = Type.GetType(className);
-                dynamic change_mood = Activator.CreateInstance(type, mood);
-                MethodInfo method = type.GetMethod("getMood");
-                dynamic value = method.Invoke(change_mood, new object[] { mood });
-                return value;
-            }
-            catch (Exception e)
-            {
-                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_NULL, e.Message);
-            }
+            dynamic result = MoodAnalyserFactory.ChangeTheMood("MoodAnalyser.MdAnalyserMain", "happy");
+            Assert.AreEqual("happy", result);
         }
     }
- }
+}
