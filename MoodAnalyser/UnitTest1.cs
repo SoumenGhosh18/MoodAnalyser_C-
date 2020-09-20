@@ -127,5 +127,20 @@ namespace MoodAnalyser
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, "please enter valid input");
             }
         }
+        [Test]
+        public void WhenGivenMoodAnalyser_WithParameterConstructor_WrongClass_NameShouldThrowMoodAnalyserException()
+        {
+            try
+            {
+                ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator();
+                MdAnalyserMain obj = (MdAnalyserMain)MoodAnalyserFactory.InstanceCreator
+                ("MoodAnalyser.MdAnalyserMain1as]3", constructorInfo, "he is in happy mood");
+
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.type);
+            }
+        }
     }
 }
