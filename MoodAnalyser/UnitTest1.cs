@@ -178,19 +178,7 @@ namespace MoodAnalyser
                 Assert.AreEqual(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.type);
             }
         }
-        [Test]
-        public void WhenGivenHappyMessage_UsingReflection_ShouldReturnHappy()
-        {
-            try
-            {
-                string message = MoodAnalyserFactory.getMethod("MoodAnalyser.MdAnalyserMain", "getMethod", "happy");
-                Assert.AreEqual("happy", message);
-            }
-            catch (MoodAnalyserException e)
-            {
-                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, "invalid input");
-            }
-        }
+      
         [Test]
         public void WhenGivenHappyMessageUsingReflection_WhenImproperMethod_ShouldReturnHappy()
         {
@@ -201,6 +189,21 @@ namespace MoodAnalyser
             catch (MoodAnalyserException e)
             {
                 Assert.AreEqual(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.type);
+            }
+        }
+        public static dynamic ChangeTheMood(string className, string mood)
+        {
+            try
+            {
+                Type type = Type.GetType(className);
+                dynamic change_mood = Activator.CreateInstance(type, mood);
+                MethodInfo method = type.GetMethod("getMood");
+                dynamic value = method.Invoke(change_mood, new object[] { mood });
+                return value;
+            }
+            catch (Exception e)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.ENTERED_NULL, e.Message);
             }
         }
     }
