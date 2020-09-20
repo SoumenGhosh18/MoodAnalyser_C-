@@ -83,10 +83,13 @@ namespace MoodAnalyser
         {
             try
             {
+                //modnalysermain m = new mdanalyser();
                 ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator();
                 MdAnalyserMain obj = (MdAnalyserMain)MoodAnalyserFactory.InstanceCreator
                 ("MoodAnalyser.MdAnalyserMain", constructorInfo);
-                Assert.IsInstanceOf(typeof(MdAnalyserMain), obj);
+              //  MdAnalyserMain m = new MdAnalyserMain();
+                 Assert.IsInstanceOf(typeof(MdAnalyserMain), obj);
+               // Assert.AreEqual(obj, m);
                 Console.WriteLine("try");
             }
             catch (MoodAnalyserException e)
@@ -102,6 +105,23 @@ namespace MoodAnalyser
             {
                 ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator();
                 object obj = MoodAnalyserFactory.InstanceCreator("MdAnalyserMain12bhvyu", constructorInfo);
+               // MdAnalyserMain m = new MdAnalyserMain();
+                Console.WriteLine("try");
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.type);
+                Console.WriteLine("catch");
+
+            }
+        }
+        [Test]
+        public void WhenGivenMoodAnalyserWithWrongConstructorShouldThrowMoodAnalyserException()
+        {
+            try
+            {
+                ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator("hjvffj");
+                object obj = MoodAnalyserFactory.InstanceCreator("MdAnalyserMain", constructorInfo);
                 MdAnalyserMain m = new MdAnalyserMain();
                 Console.WriteLine("try");
             }
@@ -117,7 +137,7 @@ namespace MoodAnalyser
         {
             try
             {
-                ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator(3);
+                ConstructorInfo constructorInfo = MoodAnalyserFactory.ConstructorCreator(1);
                 MdAnalyserMain obj = (MdAnalyserMain)MoodAnalyserFactory.InstanceCreator
                 ("MoodAnalyser.MdAnalyserMain", constructorInfo, "he is is happy mood");
                 Assert.IsInstanceOf(typeof(MdAnalyserMain), obj);

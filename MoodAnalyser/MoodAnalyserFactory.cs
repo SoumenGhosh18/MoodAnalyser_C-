@@ -20,6 +20,19 @@ namespace MoodAnalyser
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.Message);
             }
         }
+        public static ConstructorInfo ConstructorCreator(String message)
+        {
+            try
+            {
+                Type type = typeof(MdAnalyserMain);
+                ConstructorInfo[] constructor = type.GetConstructors();
+                return constructor[3];
+            }
+            catch (Exception e)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.Not_A_Valid_Input, e.Message);
+            }
+        }
         public static ConstructorInfo ConstructorCreator(int noOfParameters)
         {
             try
@@ -34,7 +47,7 @@ namespace MoodAnalyser
                         return index;
                     }
                 }
-                return constructor[0];
+                return constructor[1];
             }
             catch (Exception e)
             {
@@ -48,6 +61,7 @@ namespace MoodAnalyser
             {
                 Assembly excutingAssambly = Assembly.GetExecutingAssembly();
                 Type type = excutingAssambly.GetType(className);
+                //TYpe cast
                 MdAnalyserMain reflectionGenratedObject = (MdAnalyserMain)Activator.CreateInstance(type);
                 return reflectionGenratedObject;
             }
@@ -61,8 +75,11 @@ namespace MoodAnalyser
         {
             try
             {
+                //Load class
                 Assembly excutingAssambly = Assembly.GetExecutingAssembly();
+                //define the type
                 Type type = excutingAssambly.GetType(className);
+               //obj create
                 object reflectionGenratedObject = Activator.CreateInstance(type, message);
                 return reflectionGenratedObject;
             }
